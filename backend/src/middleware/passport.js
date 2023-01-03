@@ -1,5 +1,5 @@
 import passportGoogle from 'passport-google-oauth';
-import passportFacebook from 'passport-facebook'
+import passportFacebook from 'passport-facebook';
 import db from "../sql.js";
 const GoogleStrategy = passportGoogle.OAuth2Strategy;
 const FacebookStrategy = passportFacebook.Strategy;
@@ -34,11 +34,11 @@ passport.use(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: "/auth/google/callback",
-      scope: ['profile', 'email', 'https://www.googleapis.com/auth/user.birthday.read']
+      callbackURL: "/auth/google/callback"
     },
     async function (accessToken, refreshToken, profile, done) {
        const {email, name} = profile._json;
+       console.log(email, name)
       let query = `select * from customers where mail = "${email}"`;
       const result = await Myquery(query);
       if(result){
