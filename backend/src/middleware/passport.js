@@ -38,17 +38,13 @@ passport.use(
     },
     async function (accessToken, refreshToken, profile, done) {
        const {email, name} = profile._json;
-       console.log(email, name)
       let query = `select * from customers where mail = "${email}"`;
       const result = await Myquery(query);
-      console.log(result)
       if(result.length >= 1){
         return done(null, result)
       }else{
         const password = Math.random().toString(36).slice(-8); 
-        console.log(password)
         const passwordHash = bcrypt.hashSync(password, 10);
-        console.log(passwordHash)
         const query = `insert into customers (customer_name, mail, password) 
                     VALUES ("${name}",  "${email}", "${passwordHash}")`;
         await Myquery(query);
@@ -80,7 +76,6 @@ passport.use(
       clientID: FACEBOOK_APP_ID,
       clientSecret: FACEBOOK_APP_SECRET,
       callbackURL: "/auth/facebook/callback",
-    //   scope: ['profile', 'email', 'https://www.googleapis.com/auth/user.birthday.read']
     },
         async function (accessToken, refreshToken, profile, done) {
             const {email, name} = profile._json;
