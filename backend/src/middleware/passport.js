@@ -41,7 +41,8 @@ passport.use(
        console.log(email, name)
       let query = `select * from customers where mail = "${email}"`;
       const result = await Myquery(query);
-      if(result){
+      console.log(result)
+      if(result.length >= 1){
         return done(null, result)
       }else{
         const password = Math.random().toString(36).slice(-8); 
@@ -51,7 +52,7 @@ passport.use(
         const query = `insert into customers (customer_name, mail, password) 
                     VALUES ("${name}",  "${email}", "${passwordHash}")`;
         await Myquery(query);
-        const query_in = `select * from customers where mail = "${mail}"`  
+        const query_in = `select * from customers where mail = "${email}"`  
         const result = await Myquery(query_in)  
         return done(null, result) 
       }
