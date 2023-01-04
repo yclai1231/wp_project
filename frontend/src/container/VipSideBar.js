@@ -37,7 +37,7 @@ function VipSideBar() {
   const location = useLocation();
   const currentPath = location.pathname;
   const {removeCookie, setLogin} = useWeb();
-  // console.log(Link);
+  // // console.log(Link);
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {

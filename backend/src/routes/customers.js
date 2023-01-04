@@ -10,7 +10,7 @@ const Myquery = (query) => {
         throw err;
       } else {
         if(result.affectedRows !== 1){
-            console.log(result)
+            // console.log(result)
             result.map((element) => {
                 element.birthday = moment(element.birthday).utc().format("YYYY-MM-DD");
                 element.birthday = new Date(element.birthday);})
@@ -23,7 +23,7 @@ const Myquery = (query) => {
 };
 
 router.delete("/", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   let {id} = req.query;
   let query = `delete from customers
                  where customer_id = ${id}`;
@@ -41,7 +41,7 @@ router.get("/", async (_, res) => {
 });
 
 router.put("/", async (req, res) => {
-    console.log('Customer to update:', req.body);
+    // console.log('Customer to update:', req.body);
     let {customer_id, customer_name, birthday, phone_number} = req.body;
     let query = `update customers set
                  customer_name = "${customer_name}", 

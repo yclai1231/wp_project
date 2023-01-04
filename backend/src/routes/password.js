@@ -25,12 +25,12 @@ const Myquery = (query) => {
   };
 
 router.post("/forgot-password", async (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     const { email } = req.body;
     try {
       let query = `select * from customers where mail = "${email}"`;
       const result = await Myquery(query)
-      console.log(result)
+      // console.log(result)
       if (result.length < 1) {
         return res.status(400).json({ errors: "User Not Exists!!" });
       }
@@ -47,7 +47,7 @@ router.post("/forgot-password", async (req, res) => {
           pass: "dzsweuxtgmmgplrt",
         },
       });
-      console.log(result[0].mail)
+      // console.log(result[0].mail)
       var mailOptions = {
         from: "grospatisserie@gmail.com",
         to: result[0].mail,
@@ -57,12 +57,12 @@ router.post("/forgot-password", async (req, res) => {
   
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
-          console.log(error);
+          // console.log(error);
         } else {
-          console.log("Email sent: " + info.response);
+          // console.log("Email sent: " + info.response);
         }
       });
-      console.log(link);
+      // console.log(link);
     } catch (error) {}
   });
   
@@ -78,7 +78,7 @@ router.post("/forgot-password", async (req, res) => {
       const verify = jwt.verify(token, secret);
       res.render("index", {email: verify.email, status: "Verified" }); //, url:
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       res.send("Not Verified");
     }
   });
@@ -102,10 +102,10 @@ router.post("/forgot-password", async (req, res) => {
                where customer_id = ${id}; `
       // res.render("index", { email: verify.email, status: "verified" });
       const result = await Myquery(query)
-      // console.log(query)
+      // // console.log(query)
       res.json({ result });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       res.json({ status: "Something Went Wrong" });
     }
   });

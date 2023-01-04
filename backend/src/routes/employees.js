@@ -18,7 +18,7 @@ const Myquery = (query) => {
 
 router.delete('/', async (req, res) => {
     let {id} = req.query;
-    console.log(id)
+    // console.log(id)
     let query = `delete from employees
                  where employee_id = ${id}`;
     await Myquery(query, false)
@@ -36,7 +36,7 @@ router.get("/", async (_, res) => {
 });
 
 router.post('/', async (req, res) => {
-    console.log('Employee to add:', req.body);
+    // console.log('Employee to add:', req.body);
     let {gender, employee_name, salary, working} = req.body;
     let query = `INSERT INTO employees (gender, employee_name, salary, working)
              VALUES("${gender}", "${employee_name}", ${salary}, ${working})`;
@@ -49,7 +49,7 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/', async (req, res) => {
-    console.log('Employee to update:', req.body.value);
+    // console.log('Employee to update:', req.body.value);
     let {employee_id, gender, employee_name, salary, working} = req.body.value
     let query = `update employees set
                  gender = "${gender}", 
@@ -61,7 +61,7 @@ router.put('/', async (req, res) => {
     let query_return = `select * from employees
                         where employee_id = ${employee_id};`;
     var result = await Myquery(query_return);
-    // console.log(result)
+    // // console.log(result)
     res.status(200).send({result})
 });
 export default router;

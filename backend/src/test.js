@@ -6,7 +6,7 @@ router.get("/", async (_, res) => {
   sql.query("SELECT * FROM items", (err, result) => {
     if (err) throw err;
     else {
-      console.log("Query done");
+      // console.log("Query done");
       res.json({ result });
     }
   });

@@ -91,7 +91,7 @@ const make_dict = (array_c, detail) => {
                    where order_id = ${order_id}`;
     await Myquery(query, true);
     var result = await queryOrder(customer_id);
-    console.log(result)
+    // console.log(result)
     res.status(200).send({ result });
   });
   
@@ -102,7 +102,7 @@ const make_dict = (array_c, detail) => {
   });
   
   router.put('/', async (req, res) => {
-      // console.log('Product to update:', req.body.value);
+      // // console.log('Product to update:', req.body.value);
       let {order_id, deliver_method, deliver_location, notes, customer_id} = req.body;
       let query = `update orders set
                    deliver_method = "${deliver_method}", 

@@ -18,7 +18,7 @@ const Myquery = (query) => {
 
 router.delete('/', async (req, res) => {
     let {id} = req.query;
-    console.log(id)
+    // console.log(id)
     let query = `delete from products
                  where product_id = ${id}`;
     await Myquery(query)
@@ -32,7 +32,7 @@ router.get("/", async (_, res) => {
     let query = `select products.product_id, products.product_name,  products.price, products.description from products
                  where selling = 1;`;
     var result = await Myquery(query)
-    console.log(result)
+    // console.log(result)
     res.status(200).send({result})
 });
 
@@ -59,7 +59,7 @@ router.get('/sort', async(req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    console.log('Product to add:', req.body);
+    // console.log('Product to add:', req.body);
     let {product_name, price, selling} = req.body;
     let query = `INSERT INTO products (product_name, price, selling )
              VALUES("${product_name}", ${price}, ${selling})`;
@@ -74,7 +74,7 @@ router.post('/', async (req, res) => {
 
 
 router.put('/', async (req, res) => {
-    // console.log('Product to update:', req.body.value);
+    // // console.log('Product to update:', req.body.value);
     let {product_id, product_name, price, selling} = req.body.value;
     let query = `update products set
                  product_name = "${product_name}", 

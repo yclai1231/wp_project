@@ -24,7 +24,7 @@ const ProductDetail = () => {
           )({ customer_id: cookies.customer_id, product_id: item.product_id, quantity });
         }
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     }
   };
@@ -38,7 +38,7 @@ const ProductDetail = () => {
   };
 
   const handleQuantityChange = (event) => {
-    // console.log(event.target.value);
+    // // console.log(event.target.value);
     const { value } = event.target;
     setQuantity(value);
   };
@@ -47,7 +47,7 @@ const ProductDetail = () => {
     const newImg = [];
     for (const i in item.img) {
       if (Number(i) !== 0) {
-        console.log(typeof i);
+        // console.log(typeof i);
         newImg.push(item.img[i]);
       }
     }

@@ -41,17 +41,17 @@ const WebProvider = (props) => {
   //       },
   //     })
   //       .then((response) => {
-  //         // console.log(response);
+  //         // // console.log(response);
   //         if (response.status === 200) return response.json();
   //         throw new Error("authentication has been failed!");
   //       })
   //       .then((resObject) => {
-  //         console.log(resObject.result[0].customer_id);
+  //         // console.log(resObject.result[0].customer_id);
   //         setCustomerID(resObject.result[0].customer_id);
   //         setLogin(true);
   //       })
   //       .catch((err) => {
-  //         console.log(err);
+  //         // console.log(err);
   //       });
   //   };
   //   if (!login) {
@@ -63,7 +63,7 @@ const WebProvider = (props) => {
   const CRUD =
     (type, path) =>
     async (value = null) => {
-      console.log(type, path);
+      // console.log(type, path);
       switch (type) {
         case "C":
           try {
@@ -73,7 +73,7 @@ const WebProvider = (props) => {
             if (typeof result !== "undefined") {
               return result;
             } else {
-              console.log(result);
+              // console.log(result);
               alert("NO Result");
             }
           } catch (err) {
@@ -81,7 +81,7 @@ const WebProvider = (props) => {
               data: { errors },
             } = err.response;
             if (errors) {
-              console.log(errors);
+              // console.log(errors);
               return { errors };
             } else throw err;
           }
@@ -93,7 +93,7 @@ const WebProvider = (props) => {
             } = await instance.get(`${path}`, {params: value});
 
             if (typeof result !== "undefined") {
-              console.log(result);
+              // console.log(result);
               return result;
             } else {
               alert("NO Result");
@@ -103,7 +103,7 @@ const WebProvider = (props) => {
               data: { errors },
             } = err;
             if (errors) {
-              console.log(errors);
+              // console.log(errors);
               return { errors };
             } else throw err;
           }

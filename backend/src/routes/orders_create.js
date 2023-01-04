@@ -18,16 +18,16 @@ const Myquery = (query, result_array = null) => {
 
 function getRandomName() {
   let hexString = v4();
-  console.log("hex:   ", hexString);
+  // console.log("hex:   ", hexString);
   hexString = hexString.replace("-", "");
   let base64String = Buffer.from(hexString, "hex").toString("base64");
-  console.log("base64:", base64String);
+  // console.log("base64:", base64String);
   return base64String;
 }
 
 
 router.post('/', async (req, res) => {
-  console.log('Order to add:', req.body);
+  // console.log('Order to add:', req.body);
   let {order_date, deliver_date, deliver_method, deliver_location, customer, order_status, notes, basket_id} = req.body;
   let query = `select * from basket where basket_id in (?)`;
   const basket_items = await Myquery(query, basket_id);
@@ -56,7 +56,7 @@ router.post('/', async (req, res) => {
   // left join products on products.product_id = basket.product_id  
   // where customers.customer_id = ${customer}`;
   // const result = await Myquery(query);
-  // console.log(result)
+  // // console.log(result)
   // res.status(200).send({result})
 });
 export default router;

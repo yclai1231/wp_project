@@ -59,14 +59,14 @@ const dataInit = async (db) => {
   await db.query("SELECT * FROM items WHERE id in (1,3)", (err, result) => {
     if (err) throw err;
     else {
-      console.log(result[0].id)
+      // console.log(result[0].id)
       // for (const i in result[0]) {
 
-      //   console.log(i);
+      //   // console.log(i);
       // }
     }
   });
-  console.log("Database initialized!");
+  // console.log("Database initialized!");
 };
 
 export { dataInit };

@@ -62,7 +62,7 @@ const Products = () => {
   useEffect(() => {
     const Render = async () => {
       try {
-        console.log("data", data);
+        // console.log("data", data);
         const result = await CRUD("R", "/products")(data);
         setProducts(result);
       } catch (err) {

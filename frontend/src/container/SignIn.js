@@ -32,7 +32,7 @@ const SignIn = () => {
     setMode(newValue);
   };
   const handleInputChange = (event) => {
-    // console.log(event.target.value);
+    // // console.log(event.target.value);
     const { name, value } = event.target;
     setData((prev) => ({
       ...prev,
@@ -66,13 +66,13 @@ const SignIn = () => {
       }
     );
     const { result } = await res.json();
-    console.log('login~~', result);
+    // console.log('login~~', result);
 
     if (result.errors) {
       setError(result.errors);
     } else {
       setLogin(true);
-      console.log(result[0]);
+      // console.log(result[0]);
       // setCustomerID(result[0].customer_id);
       setCookie('customer_id', result[0].customer_id, { path: '/' })
       navigate("/");
@@ -89,7 +89,7 @@ const SignIn = () => {
         "Access-Control-Allow-Credentials": true,
       },
     })
-    console.log('hello : ', res);
+    // console.log('hello : ', res);
   };
 
   useEffect(() => {

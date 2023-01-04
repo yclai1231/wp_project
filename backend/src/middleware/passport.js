@@ -1,14 +1,15 @@
 import passportGoogle from 'passport-google-oauth';
 import passportFacebook from 'passport-facebook';
 import db from "../sql.js";
-const GoogleStrategy = passportGoogle.OAuth2Strategy;
-const FacebookStrategy = passportFacebook.Strategy;
-
+import dotenv from 'dotenv-defaults';
 import passport from "passport";
 import bcrypt from 'bcrypt';
+dotenv.config();
 
-const GOOGLE_CLIENT_ID ="137185012967-g6cefraovhadt8r9884g0on0sgvfiu85.apps.googleusercontent.com";
-const GOOGLE_CLIENT_SECRET = "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";
+const GoogleStrategy = passportGoogle.OAuth2Strategy;
+const FacebookStrategy = passportFacebook.Strategy;
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 
 // GITHUB_CLIENT_ID = "your id";
 // GITHUB_CLIENT_SECRET = "your id";
@@ -79,16 +80,16 @@ passport.use(
     },
         async function (accessToken, refreshToken, profile, done) {
             const {email, name} = profile._json;
-            console.log(profile)
+            // console.log(profile)
            let query = `select * from customers where mail = "${email}"`;
            const result = await Myquery(query);
            if(result){
              return done(null, result)
            }else{
              const password = Math.random().toString(36).slice(-8); 
-             console.log(password)
+             // console.log(password)
              const passwordHash = bcrypt.hashSync(password, 10);
-             console.log(passwordHash)
+             // console.log(passwordHash)
              const query = `insert into customers (customer_name, mail, password) 
                          VALUES ("${name}",  "${email}", "${passwordHash}")`;
              await Myquery(query);

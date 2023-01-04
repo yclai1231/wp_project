@@ -8,10 +8,14 @@ import cookieParser from 'cookie-parser';
 import router from "./routes/index.js";
 import bodyparser from 'body-parser';
 import {requireAuth, checkUser } from './middleware/authMiddleWare.js';
+import dotenv from 'dotenv-defaults';
+import * as path from 'path';
+import wakeUpDyno from "./wakeUpDyno.js"
 
+dotenv.config();
 sql.connect(function (err) {
   if (err) throw err;
-  console.log("Connected!");
+  // console.log("Connected!");
   dataInit(sql);
 });
 
@@ -27,7 +31,7 @@ app.use(cookieParser());
 
 // init middleware
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: process.env.CLIENT_URL,
   methods: "GET,POST,PUT,DELETE",
   credentials: true,
 }
@@ -43,11 +47,17 @@ app.use(bodyparser.json())
 app.get("*", checkUser);
 app.use("/", router);
 
-
+const __dirname = "../frontend"
+app.use(express.static(path.join(__dirname, "build")))
+app.get("/*", function(req, res){
+  res.sendFile('index.html', {root: __dirname + "build"})
+})
 
 
 // define server
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
-  console.log(`Server is up on port ${port}.`);
+   console.log(`Server is up on port ${port}.`);
+   const DYNOURL = "http://wp1111-final-21.herokuapp.com/"
+   wakeUpDyno(DYNOURL);
 });

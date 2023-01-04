@@ -34,7 +34,7 @@ const MainPage = () => {
     if (count > 1) {
       setStyle({ left: "-" + (count - 2) * sliderWidth + "px" });
       setCount((prev) => prev - 1);
-      //   console.log(1);
+      //   // console.log(1);
     } else if (count === 1) {
       setStyle({ left: "-" + (items - 1) * sliderWidth + "px" });
       setCount(items);

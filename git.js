@@ -4,40 +4,40 @@ let args = process.argv;
 async function a() {
   const branch = await git.branch();
   if (branch.current == "main") {
-    console.log(new Error('You are pushing on the branch "main"'));
+    // console.log(new Error('You are pushing on the branch "main"'));
     return;
   }
   switch (args[2]) {
     case "push":
       if (!args[3]) {
-        console.log(new Error("Enter your commit message"));
+        // console.log(new Error("Enter your commit message"));
         return;
       }
-      console.log("adding...");
+      // console.log("adding...");
       await git.add(".");
-      console.log("committing...");
+      // console.log("committing...");
       await git.commit(args[3]);
-      console.log("pushing...");
+      // console.log("pushing...");
       await git.push();
-      console.log("Done!");
+      // console.log("Done!");
       break;
     case "pull":
-      console.log("switching to main...");
+      // console.log("switching to main...");
       await git.checkout("main");
-      console.log("pulling...");
+      // console.log("pulling...");
       await git.pull();
-      console.log(`switching to ${branch.current}...`);
+      // console.log(`switching to ${branch.current}...`);
       await git.checkout(branch.current);
-      console.log(`merging from main to ${branch.current}...`);
+      // console.log(`merging from main to ${branch.current}...`);
       await git.mergeFromTo("main", branch.current);
-      console.log("Done!");
+      // console.log("Done!");
       break;
     case undefined:
       let error = new Error("Please enter a way.");
-      console.log(error);
+      // console.log(error);
       break;
     default:
-      console.log(new Error("Wrong Input."));
+      // console.log(new Error("Wrong Input."));
   }
 }
 a();

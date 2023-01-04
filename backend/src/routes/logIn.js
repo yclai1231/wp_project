@@ -53,16 +53,16 @@ const createToken = (id) => {
 var check = new CheckCustomer();
 
 router.post("/", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { data: {mail, password} } = req.body;
   let errors = { mail: "", password: "" };
   errors = await check.checkEmail(mail, errors);
   errors = await check.checkPassword(mail, password, errors);
   if (errors.mail || errors.password) {
-    console.log(errors);
+    // console.log(errors);
     res.status(400).json({ errors });
   } else {
-    console.log("logIn succeed");
+    // console.log("logIn succeed");
     const query_in = `select * from customers where mail = "${mail}"`;
     const result = await Myquery(query_in);
     const token = createToken(result[0].customer_id);
@@ -72,7 +72,7 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  console.log(1);
+  // console.log(1);
   res.cookie("jwt", "", { maxAge: 1 });
   res.redirect(CLIENT_URL);
 });

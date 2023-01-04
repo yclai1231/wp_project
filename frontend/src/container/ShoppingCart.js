@@ -55,7 +55,7 @@ const ShoppingCart = () => {
   const [items, setItems] = useState(item);
   const [sum, setSum] = useState(0);
   const { CRUD, cookies, login } = useWeb();
-  console.log(cookies.customer_id)
+  // console.log(cookies.customer_id)
   useEffect(() => {
     const Render = async () => {
       try {
@@ -63,10 +63,10 @@ const ShoppingCart = () => {
 
         setItems(newItem.map((m) => ({ ...m, number: 0 })));
       } catch (err) {
-        console.log("有問題");
+        // console.log("有問題");
       }
     };
-    console.log(cookies.customer_id);
+    // console.log(cookies.customer_id);
     if (cookies.customer_id) {
       Render();
     }

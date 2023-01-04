@@ -69,7 +69,7 @@ const Reset = () => {
         navigate("/signin") 
     }
     else {
-        console.log(pass1, pass2);
+        // console.log(pass1, pass2);
         setSame(false);
     }
   }

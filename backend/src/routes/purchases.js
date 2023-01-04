@@ -21,16 +21,16 @@ const make_dict = (array_c, detail) => {
       dic[array_c[i].purchase_id] = array_c[i];
     }
   }
-  console.log("Purchase query done");
+  // console.log("Purchase query done");
   return dic;
 };
 
 function getRandomName() {
   let hexString = v4();
-  console.log("hex:   ", hexString);
+  // console.log("hex:   ", hexString);
   hexString = hexString.replace("-", "");
   let base64String = Buffer.from(hexString, "hex").toString("base64");
-  console.log("base64:", base64String);
+  // console.log("base64:", base64String);
   return base64String;
 }
 
@@ -51,7 +51,7 @@ const make_arr = (origin, detail) => {
 //     await db.query(query, (err, result) => {
 //         if (err) throw err;
 //         else {
-//             console.log("Insert done");
+//             // console.log("Insert done");
 //         }
 //     });
 // };
@@ -101,7 +101,7 @@ const addPurchase = async (data, addDetail) => {
         let query = `select max(purchase_id) as 'purchase_id' from purchases`;
         let purchase_main = await Myquery(query);
         let purchase_id = purchase_main[0].purchase_id
-        console.log(purchase_id)
+        // console.log(purchase_id)
         let query_add = `INSERT INTO purchases_detail (purchase_id, ingredient, price, quantity)
         VALUES(${purchase_id}, "${ingredient}", ${price}, ${quantity})`;
         await Myquery(query_add, true)
@@ -117,7 +117,7 @@ const addPurchase = async (data, addDetail) => {
 };
 
 router.delete("/", async (req, res) => {
-  console.log(req.query);
+  // console.log(req.query);
   let {id} = req.query;
   let query = `delete from purchases
                 where purchase_id = ${id}`;
@@ -128,27 +128,27 @@ router.delete("/", async (req, res) => {
 
 router.get("/", async (_, res) => {
     var result = await queryPurchase()
-    // console.log(result)
+    // // console.log(result)
     res.status(200).send({result})
 });
 
 router.post("/", async (req, res) => {
-    console.log('add')
+    // console.log('add')
     let data = req.body;
-    console.log('add data is:', data)
+    // console.log('add data is:', data)
     var addDetail = false
-    console.log('data element:', Object.keys(data).length)
+    // console.log('data element:', Object.keys(data).length)
     if( Object.keys(data).length !== 4){
         addDetail = true
     }
     if(addDetail){
         var result = await addPurchase(data, addDetail);
-        console.log('result is', result)
+        // console.log('result is', result)
         res.status(200).send({result})
     }
     else{
         await addPurchase(data, addDetail);
-        console.log('adding main purchase')
+        // console.log('adding main purchase')
         res.status(200).send()
     } 
 
