@@ -37,7 +37,7 @@ passport.use(
       callbackURL: "/auth/google/callback"
     },
     async function (accessToken, refreshToken, profile, done) {
-       const {email, name} = profile._json;
+      const {email, name} = profile._json;
       let query = `select * from customers where mail = "${email}"`;
       const result = await Myquery(query);
       if(result.length >= 1){
@@ -78,8 +78,8 @@ passport.use(
       callbackURL: "/auth/facebook/callback",
     },
         async function (accessToken, refreshToken, profile, done) {
-            const {email, name} = profile._json;
-            console.log(profile)
+           const {email, name} = profile._json;
+           console.log(profile)
            let query = `select * from customers where mail = "${email}"`;
            const result = await Myquery(query);
            if(result){
