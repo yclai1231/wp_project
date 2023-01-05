@@ -1,7 +1,8 @@
 import { useState, useContext, createContext, useEffect } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-const instance = axios.create({ baseURL: "http://localhost:4000/" });
+// const instance = axios.create({ baseURL: "http://localhost:4000/" });
+const instance = axios.create({baseURL: "/"});
 const WebContext = createContext({
   login: false,
   cartNumber: 0,

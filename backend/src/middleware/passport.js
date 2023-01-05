@@ -1,14 +1,18 @@
 import passportGoogle from 'passport-google-oauth';
 import passportFacebook from 'passport-facebook';
 import db from "../sql.js";
+import dotenv from "dotenv-defaults";
+
+dotenv.config()
 const GoogleStrategy = passportGoogle.OAuth2Strategy;
 const FacebookStrategy = passportFacebook.Strategy;
 
 import passport from "passport";
 import bcrypt from 'bcrypt';
 
-const GOOGLE_CLIENT_ID ="137185012967-g6cefraovhadt8r9884g0on0sgvfiu85.apps.googleusercontent.com";
-const GOOGLE_CLIENT_SECRET = "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";
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+
 
 // GITHUB_CLIENT_ID = "your id";
 // GITHUB_CLIENT_SECRET = "your id";

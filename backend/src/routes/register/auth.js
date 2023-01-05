@@ -1,8 +1,11 @@
 import passport from "passport";
 import express from "express";
 import '../../middleware/passport.js';
+import dotenv from 'dotenv-defaults'
+dotenv.config()
 const router = express.Router();
-const CLIENT_URL = "http://localhost:3000/";
+// const CLIENT_URL = "http://localhost:3000/";
+const CLIENT_URL = process.env.CLIENT_URL
 
 router.get("/login/success", (req, res) => {
     // console.log(req.user[0].customer_name)

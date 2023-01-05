@@ -28,7 +28,7 @@ app.use(cookieParser());
 // init middleware
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "*",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
@@ -42,6 +42,11 @@ app.use(bodyparser.json())
 app.use("/*", checkUser);
 app.use("/", router);
 
+const __dirname = "../frontend"
+app.use(express.static(path.join(__dirname, "build")))
+app.get("/*", function(req, res){
+  res.sendFile('index.html', {root: __dirname + "build"})
+})
 
 // define server
 const port = process.env.PORT || 4000;

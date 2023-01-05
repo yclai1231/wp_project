@@ -3,8 +3,11 @@ import db from "../../sql.js";
 import express from "express";
 import moment from "moment";
 import bcrypt from "bcrypt";
+import dotenv from 'dotenv-defaults'
+dotenv.config()
 const router = express.Router();
-const CLIENT_URL = "http://localhost:3000/";
+// const CLIENT_URL = "http://localhost:3000/";
+const CLIENT_URL = process.env.CLIENT_URL;
 // send query
 const Myquery = (query) => {
   return new Promise((resolve) => {

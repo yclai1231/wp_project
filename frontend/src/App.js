@@ -30,7 +30,8 @@ function App() {
   const { setLogin, setCookie } = useWeb();
   useEffect(() => {
     const getUser = () => {
-      fetch("http://localhost:4000/auth/login/success", {
+      // fetch("http://localhost:4000/auth/login/success", {
+      fetch("/auth/login/success", {
         method: "GET",
         credentials: "include",
         headers: {
