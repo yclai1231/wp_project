@@ -54,10 +54,10 @@ const VipInfo = () => {
   const [time, setTime] = useState(dayjs());
   const [data, setData] = useState({
     customer_id: cookies.customer_id,
-    customer_name: value.customer_name,
-    mail: value.mail,
-    phone_number: value.phone_number,
-    birthday: value.birthday,
+    customer_name: value ? value.customer_name : null,
+    mail: value ? value.mail : null,
+    phone_number: value ? value.phone_number : null,
+    birthday: value ? value.birthday : null,
   });
   const [init, setInit] = useState(false);
   const handleInputChange = (event) => {
