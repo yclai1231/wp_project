@@ -4,7 +4,7 @@ import express from "express";
 import moment from "moment";
 import bcrypt from "bcrypt";
 const router = express.Router();
-const CLIENT_URL = "http://localhost:3000/";
+const CLIENT_URL = "http://localhost:" + process.env.PORT + "/";
 // send query
 const Myquery = (query) => {
   return new Promise((resolve) => {

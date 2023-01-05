@@ -29,7 +29,7 @@ function App() {
   const [user, setUser] = useState(null);
   useEffect(() => {
     const getUser = () => {
-      fetch("http://localhost:4000/auth/login/success", {
+      fetch("http://localhost:"+ process.env.PORT +"/auth/login/success", {
         method: "GET",
         credentials: "include",
         headers: {
