@@ -1,5 +1,6 @@
 import passport from "passport";
 import express from "express";
+
 import '../../middleware/passport.js';
 import dotenv from 'dotenv-defaults'
 dotenv.config()
@@ -8,13 +9,13 @@ const router = express.Router();
 const CLIENT_URL = process.env.CLIENT_URL
 
 router.get("/login/success", (req, res) => {
-    // console.log(req.user[0].customer_name)
+  // console.log(req.user[0].customer_name)
   if (req.user) {
     res.status(200).json({
       success: true,
       message: "successfull",
       result: req.user,
-      cookies: req.cookies
+      cookies: req.cookies,
     });
   }
 });
@@ -31,7 +32,10 @@ router.get("/logout", (req, res) => {
   res.redirect(CLIENT_URL);
 });
 
-router.get("/google", passport.authenticate("google", { scope: ["profile", "email"]}));
+router.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
 
 router.get(
   "/google/callback",
@@ -51,7 +55,10 @@ router.get(
   })
 );
 
-router.get("/facebook", passport.authenticate("facebook", { scope: ["profile", "email"] }));
+router.get(
+  "/facebook",
+  passport.authenticate("facebook", { scope: ["profile", "email"] })
+);
 
 router.get(
   "/facebook/callback",
@@ -61,4 +68,4 @@ router.get(
   })
 );
 
-export default router
+export default router;
