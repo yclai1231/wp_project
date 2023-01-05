@@ -53,7 +53,8 @@ const SignIn = () => {
     setError(false);
     // const result = await CRUD("C", mode === "1" ? "/logIn" : "/signUp")(data);
     const res = await fetch(
-      `http://localhost:4000${mode === "1" ? "/logIn" : "/signUp"}`,
+      // `http://localhost:4000${mode === "1" ? "/logIn" : "/signUp"}`,
+      `${mode === "1" ? "/logIn" : "/signUp"}`,
       {
         method: "POST",
         body: JSON.stringify({ data }),
@@ -80,7 +81,8 @@ const SignIn = () => {
     }
   };
   const handleGoogleClick = async() => {
-    window.open("http://localhost:4000/auth/google", "_self");
+    // window.open("http://localhost:4000/auth/google", "_self");
+    window.open("/auth/google", "_self");
   };
 
 

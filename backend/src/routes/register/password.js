@@ -23,10 +23,51 @@ const Myquery = (query) => {
 };
 
 router.post("/forgot-password", async (req, res) => {
-  console.log(req.body);
-  const { email } = req.body;
-  try {
-    let query = `select * from customers where mail = "${email}"`;
+    console.log(req.body)
+    const { email } = req.body;
+    try {
+      let query = `select * from customers where mail = "${email}"`;
+      const result = await Myquery(query)
+      console.log(result)
+      if (result.length < 1) {
+        return res.status(400).json({ errors: "User Not Exists!!" });
+      }
+      const secret = JWT_SECRET + result[0].password;
+      const token = jwt.sign({ email: result[0].mail, id: result[0].customer_id }, secret, {
+        expiresIn: "5m",
+      });
+      // const link = `http://localhost:4000/password/reset-password/${result[0].customer_id}/${token}`;
+      // const link = `http://localhost:3000/reset?customer_id=${result[0].customer_id}&token=${token}`;
+      const link = `https://wpproject-production-0107.up.railway.app/reset?customer_id=${result[0].customer_id}&token=${token}`
+      var transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: "grospatisserie@gmail.com",
+          pass: "dzsweuxtgmmgplrt",
+        },
+      });
+      console.log(result[0].mail)
+      var mailOptions = {
+        from: "grospatisserie@gmail.com",
+        to: result[0].mail,
+        subject: "Password Reset",
+        text: link,
+      };
+  
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Email sent: " + info.response);
+        }
+      });
+      console.log(link);
+    } catch (error) {}
+  });
+  
+  router.get("/reset-password/:id/:token", async (req, res) => {
+    const { id, token } = req.params;
+    let query = `select * from customers where customer_id = ${id}`;
     const result = await Myquery(query);
     console.log(result);
     if (result.length < 1) {
