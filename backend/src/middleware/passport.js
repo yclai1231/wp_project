@@ -38,7 +38,7 @@ passport.use(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: "/auth/google/callback"
+      callbackURL: "https://wpproject-production-0107.up.railway.app/auth/google/callback"
     },
     async function (accessToken, refreshToken, profile, done) {
       const {email, name} = profile._json;
@@ -49,7 +49,7 @@ passport.use(
       }else{
         const password = Math.random().toString(36).slice(-8); 
         const passwordHash = bcrypt.hashSync(password, 10);
-        const query = `insert into customers (customer_name, mail, password) 
+        const query = `insert into customers (customer_name, mail, password)
                     VALUES ("${name}",  "${email}", "${passwordHash}")`;
         await Myquery(query);
         const query_in = `select * from customers where mail = "${email}"`  
