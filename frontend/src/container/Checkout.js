@@ -17,7 +17,7 @@ const Checkout = () => {
   const {
     state: { basket_id, sum },
   } = useLocation();
-  const { cookies, CRUD, setCartNumber } = useWeb();
+  const { cookies, CRUD } = useWeb();
   const [data, setData] = useState({
     order_date: new Date(),
     deliver_date: null,
@@ -52,10 +52,9 @@ const Checkout = () => {
   const handleCheckoutSubmit = async () => {
     try {
       setSend(true);
-      setCartNumber((prev) => prev - basket_id.length);
       await CRUD("C", "/orders_create")({ ...data, order_date: new Date() });
     } catch (err) {
-      console.log("有問題");
+      alert("有問題");
     }
   };
   return (

@@ -46,7 +46,6 @@ const ProductDetail = () => {
   const handleQuantityChange = (event) => {
     // console.log(event.target.value);
     const { value } = event.target;
-    if (value < 0) return;
     setQuantity(value);
   };
 
@@ -75,7 +74,6 @@ const ProductDetail = () => {
     <ProductIndividual
       item={item}
       open={open}
-      quantity={quantity}
       handleClickOpen={handleClickOpen}
       handleClose={handleClose}
       toSignIn={toSignIn}
