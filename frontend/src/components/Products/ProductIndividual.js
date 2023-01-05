@@ -19,10 +19,10 @@ import {
   DialogTitle,
 } from "@mui/material";
 
-const PureInput = ({ label, autoComplete, required, onChange }) => {
+const PureInput = ({ label, autoComplete, required, onChange, value }) => {
   return (
     <FormControl
-      sx={{ width: "min(50%, 50vmin)" }}
+      sx={{ width: "min(30%, 30vmin)" }}
       variant="outlined"
       required={Boolean(required)}
     >
@@ -32,6 +32,7 @@ const PureInput = ({ label, autoComplete, required, onChange }) => {
         autoComplete={autoComplete && autoComplete}
         label={label}
         type="number"
+        value={value}
         onChange={onChange}
       />
     </FormControl>
@@ -52,11 +53,6 @@ const Information = styled(Box)`
   margin-top: 5%;
   row-gap: 5vmin;
   margin-left: 10vmin;
-  div {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-  }
 `;
 const ImageContainer = styled.div`
   display: flex;
@@ -92,6 +88,7 @@ const SmallImgContainer = styled.div`
 
 const ProductIndividual = ({
   item,
+  quantity,
   open,
   handleClickOpen,
   handleClose,
@@ -108,16 +105,12 @@ const ProductIndividual = ({
           <IconButton onClick={prevImg}>
             <KeyboardDoubleArrowLeft />
           </IconButton>
-          {
-            item.img.map(
-              (i, index) =>
-                 (
-                  <SmallImgContainer
-                    img={require("../../" + i + ".png")}
-                    key={index}
-                  />
-                )
-            )}
+          {item.img.map((i, index) => (
+            <SmallImgContainer
+              img={require("../../" + i + ".png")}
+              key={index}
+            />
+          ))}
 
           {/* <SmallImgContainer img={require("../../images/canele-3-1.png")} /> */}
           <IconButton onClick={nextImg}>
@@ -126,29 +119,43 @@ const ProductIndividual = ({
         </PreviewContainer>
       </ImageContainer>
       <Information>
-        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{item.product_name}</Typography>
-        <p style={{ color: "RosyBrown", fontSize: "2vmin"}}>售價：{item.price}$</p>
-        <p style={{ width: "min(70%, 70vmin)", fontSize: "2vmin", backgroundColor: "LavenderBlush", padding: "3%", borderRadius: "20px", color: "IndianRed" }}>{item.description}</p>
-        <div>
-        <PureInput
-          required={true}
-          label="購買數量"
-          onChange={handleQuantityChange}
-        />
-        <Button
-          variant="contained"
-          color="info"
-          sx={{
-            // width: "min(30%, 30vmin, 120px)",
-            right: "1vmin",
+        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+          {item.product_name}
+        </Typography>
+        <p style={{ color: "RosyBrown", fontSize: "2vmin" }}>
+          售價：{item.price}$
+        </p>
+        <p
+          style={{
+            width: "min(70%, 70vmin)",
+            fontSize: "2vmin",
+            backgroundColor: "LavenderBlush",
+            padding: "3%",
+            borderRadius: "20px",
+            color: "IndianRed",
           }}
-          startIcon={<AddShoppingCart />}
-          onClick={handleClickOpen}
         >
-          加入購物車
-        </Button>
+          {item.description}
+        </p>
+        <div
+          style={{ display: "flex", alignItems: "center", columnGap: "2vmin" }}
+        >
+          <PureInput
+            required={true}
+            label="購買數量"
+            onChange={handleQuantityChange}
+            value={quantity}
+          />
+          <Button
+            variant="contained"
+            color="info"
+            startIcon={<AddShoppingCart />}
+            onClick={handleClickOpen}
+          >
+            加入購物車
+          </Button>
         </div>
-        
+
         <Dialog
           open={open}
           onClose={handleClose}
