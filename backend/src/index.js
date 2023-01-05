@@ -42,7 +42,7 @@ app.use(bodyparser.json())
 app.use("/*", checkUser);
 app.use("/", router);
 
-const __dirname = "../frontend"
+const __dirname = "../frontend/"
 app.use(express.static(path.join(__dirname, "build")))
 app.get("/*", function(req, res){
   res.sendFile('index.html', {root: __dirname + "build"})
