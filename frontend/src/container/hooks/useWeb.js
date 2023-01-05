@@ -7,7 +7,9 @@ import {
 } from "react";
 import axios from "axios";
 import {useCookies} from 'react-cookie'
-const instance = axios.create({ baseURL: "http://localhost:" + process.env.PORT +"/" });
+// const instance = axios.create({ baseURL: "http://localhost:" + process.env.PORT +"/" });
+const instance = axios.create({ baseURL: "/" });
+
 const WebContext = createContext({
   page: 0, //顯示是在第幾頁 table
   rowsPerPage: 10, //一頁包含幾個 tuple

@@ -12,7 +12,8 @@ const signUp = () => {
   // };
 
   const facebook = () => {
-    window.open("http://localhost:" + process.env.PORT + "/auth/facebook", "_self");
+    // window.open("http://localhost:" + process.env.PORT + "/auth/facebook", "_self");
+    window.open("/auth/facebook", "_self");
   };
 
   return (

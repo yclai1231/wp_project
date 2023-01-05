@@ -52,7 +52,8 @@ const SignIn = () => {
     setError(false);
     // const result = await CRUD("C", mode === "1" ? "/logIn" : "/signUp")(data);
     const res = await fetch(
-      `http://localhost:` + process.env.PORT + `${mode === "1" ? "/logIn" : "/signUp"}`,
+      // `http://localhost:` + process.env.PORT + `${mode === "1" ? "/logIn" : "/signUp"}`,
+      `${mode === "1" ? "/logIn" : "/signUp"}`,
       {
         method: "POST",
         body: JSON.stringify({ data }),
@@ -79,8 +80,10 @@ const SignIn = () => {
     }
   };
   const handleGoogleClick = async() => {
-    window.open("http://localhost:" + process.env.PORT + "/auth/google", "_self");
-    const res = await fetch("http://localhost:" + process.env.PORT + "/auth/login/success", {
+    // window.open("http://localhost:" + process.env.PORT + "/auth/google", "_self");
+    window.open("/auth/google", "_self");
+    // const res = await fetch("http://localhost:" + process.env.PORT + "/auth/login/success", {
+      const res = await fetch("/auth/login/success", {
       method: "GET",
       credentials: "include",
       headers: {

@@ -39,7 +39,8 @@ router.post("/forgot-password", async (req, res) => {
         expiresIn: "5m",
       });
       // const link = `http://localhost:4000/password/reset-password/${result[0].customer_id}/${token}`;
-      const link = `http://localhost` + process.env.PORT + `/reset?customer_id=${result[0].customer_id}&token=${token}`;
+      // const link = `http://localhost` + process.env.PORT + `/reset?customer_id=${result[0].customer_id}&token=${token}`;
+      const link = `/reset?customer_id=${result[0].customer_id}&token=${token}`;
       var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
