@@ -4,7 +4,7 @@
 
 const signUp = () => {
   const google = () => {
-    window.open("http://localhost:4000" + process.env.PORT + "/auth/google", "_self");
+    window.open("http://localhost:" + process.env.PORT + "/auth/google", "_self");
   };
 
   // const github = () => {
@@ -12,7 +12,7 @@ const signUp = () => {
   // };
 
   const facebook = () => {
-    window.open("http://localhost:4000" + process.env.PORT + "/auth/facebook", "_self");
+    window.open("http://localhost:" + process.env.PORT + "/auth/facebook", "_self");
   };
 
   return (
