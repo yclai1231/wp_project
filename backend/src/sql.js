@@ -10,7 +10,6 @@ var connection = mysql.createConnection({
   password: process.env.PASSWORD,
   database: "railway",
   port: 7622,
-  url: "mysql://root:E10bcKHu5GcawJLFANeb@containers-us-west-42.railway.app:7622/railway"
 });
 
 export default connection;
